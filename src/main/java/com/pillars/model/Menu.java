@@ -2,44 +2,40 @@ package com.pillars.model;
 
 import java.util.Date;
 
-/**
- * Created by Administrator on 2017/1/12.
- */
 public class Menu {
     private Long id;
+
     private String title;
+
     private String code;
-    private String parentNode;
-    private boolean haveChild;
+
+    private String parentnode;
+
+    private Byte havechild;
+
     private String link;
-    private Date dateCreated;
-    private Date lastUpdated;
-    private int rank;
 
-    public int getRank() {
-        return rank;
-    }
+    private Date datecreated;
 
-    public void setRank(int rank) {
+    private Date lastupdated;
+
+    private Integer rank;
+
+    public Menu(Long id, String title, String code, String parentnode, Byte havechild, String link, Date datecreated, Date lastupdated, Integer rank) {
+        this.id = id;
+        this.title = title;
+        this.code = code;
+        this.parentnode = parentnode;
+        this.havechild = havechild;
+        this.link = link;
+        this.datecreated = datecreated;
+        this.lastupdated = lastupdated;
         this.rank = rank;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+    public Menu() {
+        super();
     }
-
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public Date getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
 
     public Long getId() {
         return id;
@@ -54,7 +50,7 @@ public class Menu {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title == null ? null : title.trim();
     }
 
     public String getCode() {
@@ -62,32 +58,54 @@ public class Menu {
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.code = code == null ? null : code.trim();
     }
 
-    public String getParentNode() {
-        return parentNode;
+    public String getParentnode() {
+        return parentnode;
     }
 
-    public void setParentNode(String parentNode) {
-        this.parentNode = parentNode;
+    public void setParentnode(String parentnode) {
+        this.parentnode = parentnode == null ? null : parentnode.trim();
     }
 
+    public Byte getHavechild() {
+        return havechild;
+    }
 
+    public void setHavechild(Byte havechild) {
+        this.havechild = havechild;
+    }
 
     public String getLink() {
         return link;
     }
 
     public void setLink(String link) {
-        this.link = link;
+        this.link = link == null ? null : link.trim();
     }
 
-    public boolean isHaveChild() {
-        return haveChild;
+    public Date getDatecreated() {
+        return datecreated;
     }
 
-    public void setHaveChild(boolean haveChild) {
-        this.haveChild = haveChild;
+    public void setDatecreated(Date datecreated) {
+        this.datecreated = datecreated;
+    }
+
+    public Date getLastupdated() {
+        return lastupdated;
+    }
+
+    public void setLastupdated(Date lastupdated) {
+        this.lastupdated = lastupdated;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public void setRank(Integer rank) {
+        this.rank = rank;
     }
 }

@@ -32,6 +32,7 @@ public class UserController {
 		user.setLogin(login);
 		user.setPassword(password);
 		user.setMobile(mobile);
+		user.setName("dz");
 		userMapper.insert(user);
 		sqlSession.commit();
 		sqlSession.close();
