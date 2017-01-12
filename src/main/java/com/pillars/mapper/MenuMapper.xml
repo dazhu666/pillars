@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pillars.dao.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.pillars.model.Menu" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="parentNode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="haveChild" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="link" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dateCreated" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="lastUpdated" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="rank" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, code, parentNode, haveChild, link, dateCreated, lastUpdated, rank
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from menu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pillars.model.Menu" >
+    insert into menu (id, title, code, 
+      parentNode, haveChild, link, 
+      dateCreated, lastUpdated, rank
+      )
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{parentnode,jdbcType=VARCHAR}, #{havechild,jdbcType=TINYINT}, #{link,jdbcType=VARCHAR}, 
+      #{datecreated,jdbcType=TIMESTAMP}, #{lastupdated,jdbcType=TIMESTAMP}, #{rank,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pillars.model.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="parentnode != null" >
+        parentNode,
+      </if>
+      <if test="havechild != null" >
+        haveChild,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="datecreated != null" >
+        dateCreated,
+      </if>
+      <if test="lastupdated != null" >
+        lastUpdated,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentnode != null" >
+        #{parentnode,jdbcType=VARCHAR},
+      </if>
+      <if test="havechild != null" >
+        #{havechild,jdbcType=TINYINT},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="datecreated != null" >
+        #{datecreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdated != null" >
+        #{lastupdated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pillars.model.Menu" >
+    update menu
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentnode != null" >
+        parentNode = #{parentnode,jdbcType=VARCHAR},
+      </if>
+      <if test="havechild != null" >
+        haveChild = #{havechild,jdbcType=TINYINT},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="datecreated != null" >
+        dateCreated = #{datecreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdated != null" >
+        lastUpdated = #{lastupdated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pillars.model.Menu" >
+    update menu
+    set title = #{title,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      parentNode = #{parentnode,jdbcType=VARCHAR},
+      haveChild = #{havechild,jdbcType=TINYINT},
+      link = #{link,jdbcType=VARCHAR},
+      dateCreated = #{datecreated,jdbcType=TIMESTAMP},
+      lastUpdated = #{lastupdated,jdbcType=TIMESTAMP},
+      rank = #{rank,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
