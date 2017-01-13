@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import com.pillars.service.MenuService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
+	@Autowired
+	MenuService menuService;
 	@RequestMapping("/index")
 	public ModelAndView index(){
 		ModelAndView modelAndView=new ModelAndView();
@@ -35,9 +39,9 @@ public class IndexController {
 	@RequestMapping("/menu")
 	@ResponseBody
 	public Map<String,Object> menu(){
-		//MenuService service=new MenuService();
+
 		Map<String,Object> rs=new HashMap<String, Object>();
-		//rs.put("data", service.getMenu());
+		rs.put("data", menuService.getMenu());
 		
 		return rs;
 	}

@@ -6,6 +6,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.pillars.controller"/>
+    <context:component-scan base-package="com.pillars.service"/>
 
     <!--配置Object转换为JSON的bean-->
     <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" id="mappingJacksonHttpMessageConverter">
@@ -23,6 +24,7 @@
         </property>
     </bean>
     <!--配置Object转换为JSON的bean-->
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>

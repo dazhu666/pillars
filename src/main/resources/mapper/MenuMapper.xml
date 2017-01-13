@@ -140,4 +140,7 @@
       rank = #{rank,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="getAllMenus" resultMap="BaseResultMap">
+  SELECT * FROM menu
+  </select>
 </mapper>

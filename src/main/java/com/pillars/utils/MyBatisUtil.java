@@ -1,6 +1,7 @@
 package com.pillars.utils;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -27,4 +28,13 @@ public class MyBatisUtil {
     public static SqlSessionFactory getSqlSessionFactory() {
         return sqlSessionFactory;
     }
+
+
+    //创建能执行映射文件中sql的sqlSession
+         public static SqlSession getSession(){
+             SqlSessionFactory factory=MyBatisUtil.getSqlSessionFactory();
+                return factory.openSession();
+            }
+
+
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/main/java/com/pillars/controller/HelloController.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/pillars/controller/IndexController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/pillars/controller/IndexController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/pillars/controller/UserController.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/pillars/model/menu.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/pillars/model/user.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pillars/model/Menu.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pillars/model/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pillars/service/MenuService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pillars/utils/DateUtil.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/generator.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" charset="UTF-8" />

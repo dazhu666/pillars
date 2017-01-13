@@ -2,6 +2,8 @@ package com.pillars.dao;
 
 import com.pillars.model.Menu;
 
+import java.util.List;
+
 public interface MenuMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface MenuMapper {
     int updateByPrimaryKeySelective(Menu record);
 
     int updateByPrimaryKey(Menu record);
+
+    List<Menu> getAllMenus();
 }
