@@ -8,6 +8,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/ext/ext-locale-zh_CN.js"></script>
 <script src="<%=request.getContextPath() %>/js/jquery-2.0.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/js/ext/theme-triton/resources/theme-triton-all.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/js/ext/theme-triton/resources/icon.css">
 <script type="text/javascript">
 Ext.onReady(function(){
 	var width=$(window).width();
@@ -45,12 +46,114 @@ Ext.onReady(function(){
 	        { header: '最后更新时间', dataIndex: 'lastUpdated' },
 	    ],
 	    tbar:[
-	          {xtype: 'button', text: 'Button 1',iconCls: "saveIcon"}
+	          {xtype: 'button', text: '添加',iconCls: "Add",handel:function(){
+
+			  }}
 	          ],
 	   
 	    renderTo: "body"
 	});
 });
+
+var Form;
+var Win;
+function search(Store,fieldItemsList) {
+	var formItmes = [];
+	var container = Ext.create('Ext.container.Container', {
+		layout: "hbox", margin: "0 0 5 0", items: [
+			{
+				xtype: 'datefield',
+				fieldLabel: '时间',
+				labelWidth: 80,
+				flex: 3,
+				name: 'beginDate',
+				format: 'Y-m-d',
+			}, {
+				xtype: 'datefield',
+				flex: 2.2,
+				fieldLabel: '~',
+				labelWidth: 10,
+				name: 'endDate',
+				format: 'Y-m-d',
+			}
+		]
+	});
+	formItmes.push(container);
+	for (w = 0; w < fieldItemsList.length; w++) {
+		var formItem;
+		if (fieldItemsList[w].fieldType == "comb") {
+			formItem = Ext.create('Ext.form.ComboBox', {
+				fieldLabel: fieldItemsList[w].fieldName,
+				labelWidth: 80,
+				width: 280,
+				name: fieldItemsList[w].fieldValue,
+				value: "",
+				store: Ext.create('Ext.data.Store', {
+					fields: [
+						'value', 'text'
+					],
+					data: fieldItemsList[w].list
+				}),
+				emptyText: '--请选择--',
+				editable: false,
+				//隐藏的value域与store中配置的value对应
+				valueField: 'value',
+				//用来显示的域与store中配置的text对应
+				displayField: 'text',
+			});
+		} else {
+			formItem = Ext.create('Ext.form.field.Text', {
+				fieldLabel: fieldItemsList[w].fieldName,
+				labelWidth: 80,
+				width: 280,
+				name: fieldItemsList[w].fieldValue
+			});
+		}
+		if(fieldItemsList[w].fieldType == "data"){
+			formItem=Ext.create("Ext.form.field.Date",{
+				fileLabel:fieldItemsList[w].fieldName,
+				name:fieldItemsList[w].fieldValue,
+			});
+		}
+		formItmes.push(formItem);
+	}
+
+	searchForm = Ext.create('Ext.form.Panel', {
+
+		width: 500,
+		bodyPadding: '5 5 5 5',
+		buttonAlign: 'center',
+		defaultType: 'textfield',
+		defaults: {
+			msgTarget: 'side'
+		},
+		items: formItmes,
+		buttons: [
+			{
+				text: '确定',
+				handler: function () {
+
+				}
+			}, {
+				text: '关闭',
+				handler: function () {
+					Win.hide();
+				}
+			}
+		]
+	});
+
+	Win = Ext.create('Ext.window.Window', {
+		title: '新增',
+		plain: true,
+		modal: true,
+		resizable: false,
+		closeAction: 'hide',
+		items: [Form]
+	});
+	Form.getForm().reset();
+	Win.show();
+}
 
 </script>
 <title>Insert title here</title>
