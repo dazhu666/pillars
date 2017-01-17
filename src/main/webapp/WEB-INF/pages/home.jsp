@@ -69,23 +69,21 @@
 	  var height=$(window).height();
 	  //获取浏览器宽度
 	  var width=$(window).width();
-	  Ext.create('Ext.panel.Panel',{
-		  height:height*0.1,
+	 var top= Ext.create('Ext.panel.Panel',{
+		  region: "north",
+		  height:1,
 		  width:width,
-		  renderTo:"top",
-		  bodyStyle:'background:#5fa2dd;border:0;',
+		  //bodyStyle:'background:#5fa2dd;border:0;',
+				 //url('+path+'/images/tu11464_2.jpg)
 	  });
 	  
 	  
-	  Ext.create('Ext.panel.Panel', {
+	 var left= Ext.create('Ext.panel.Panel', {
+		 region: "west",
 		    title: '菜单',
 		    width: 300,
 		    autoScroll:true,
 		    height:height*0.9-5,
-		    
-		    defaultMargins:{
-		    	bottom:500
-		    },
 		    layout: {
 		        // layout-specific configs go here
 		        type: 'accordion',
@@ -93,26 +91,36 @@
 		        animate: true,
 		    },
 		    items: menu3List,
-		    renderTo: "left"
+
 		});
 	  
-	  Ext.create('Ext.panel.Panel',{
+	 var right= Ext.create('Ext.panel.Panel',{
+		 region: "center",
 		  title:"主界面",
 		  width:width-305,
 		  height:height*0.9-5,
-		  renderTo:"center",
+
 		  html: '<iframe id="frame1" src="'+path+'/index/menus" frameborder="0" width="100%" height="100%"></iframe>'
 		  
+	  });
+
+	  new Ext.Viewport({
+		  title: "Viewport",
+		  layout: "border",
+		  defaults: {
+			  bodyStyle: "background-color: #FFFFFF;",
+			  frame: true
+		  },
+		  items: [
+			  top,left,right
+
+		  ],
+
 	  });
 	
   });
   </script>
 </head>
 <body>
-<div>
-<div id="top" style="height: 10%;"></div>
-<div id="left" style="width:300px;background: green;margin-top:5px;clear: both;float:left;"></div>
-<div id="center" style="float: right; height: 300px;background: green;margin-left:5px;margin-top:5px;"></div>
-</div>
 </body>
 </html>
