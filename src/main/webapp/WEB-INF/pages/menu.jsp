@@ -46,8 +46,30 @@ Ext.onReady(function(){
 	        { header: '最后更新时间', dataIndex: 'lastUpdated' },
 	    ],
 	    tbar:[
-	          {xtype: 'button', text: '添加',iconCls: "Add",handel:function(){
+	          {xtype: 'button', text: '添加',iconCls: "Add",handler:function(){
 
+				  var parentCodes;
+				  $.ajax({
+					  type:"post",
+					  dataType:"json",
+					  url:path+'/index/menu',
+					  async:false,
+					  success:function(d){
+						  parentCodes= d.data;
+					  }
+				  });
+				  var list=[];
+				  for(var i=0;i<parentCodes.length;i++){
+					  var codeItem={text:parentCodes[i].title,value:parentCodes[i].code};
+					  list.push(codeItem);
+				  }
+				  var fileItmes=[
+					  {fieldName:"标题",fieldValue:"title",text:"",fieldType:"text"},
+					  {fieldName:"节点标识",fieldValue:"code",text:"",fieldType:"text"},
+					  {fieldName:"父节点",fieldValue:"parentNode",list:list,fieldType:"comb"},
+					  {fieldName:"链接",fieldValue:"title",text:"",fieldType:"text"}
+				  ];
+				  search(fileItmes);
 			  }}
 	          ],
 	   
@@ -55,9 +77,10 @@ Ext.onReady(function(){
 	});
 });
 
-var Form;
-var Win;
-function search(Store,fieldItemsList) {
+
+function search(fieldItemsList,url) {
+	var Form;
+	var Win;
 	var formItmes = [];
 	var container = Ext.create('Ext.container.Container', {
 		layout: "hbox", margin: "0 0 5 0", items: [
@@ -78,7 +101,7 @@ function search(Store,fieldItemsList) {
 			}
 		]
 	});
-	formItmes.push(container);
+	//formItmes.push(container);
 	for (w = 0; w < fieldItemsList.length; w++) {
 		var formItem;
 		if (fieldItemsList[w].fieldType == "comb") {
@@ -118,7 +141,7 @@ function search(Store,fieldItemsList) {
 		formItmes.push(formItem);
 	}
 
-	searchForm = Ext.create('Ext.form.Panel', {
+	Form = Ext.create('Ext.form.Panel', {
 
 		width: 500,
 		bodyPadding: '5 5 5 5',
@@ -132,7 +155,12 @@ function search(Store,fieldItemsList) {
 			{
 				text: '确定',
 				handler: function () {
+					Form.submit({
+						url:url,
+						success:function(form,response){
 
+						}
+					});
 				}
 			}, {
 				text: '关闭',

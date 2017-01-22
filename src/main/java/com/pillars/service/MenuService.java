@@ -37,4 +37,22 @@ public class MenuService {
 		return list;
 	}
 
+	public boolean insertMenu(Menu menu){
+		SqlSession session=MyBatisUtil.getSession();
+		MenuMapper menuMapper=session.getMapper(MenuMapper.class);
+		int result=menuMapper.insert(menu);
+		if(result>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+	public Menu findMenuByCode(String code){
+		SqlSession session=MyBatisUtil.getSession();
+		MenuMapper menuMapper=session.getMapper(MenuMapper.class);
+		Menu menu=menuMapper.findByCode(code);
+		return menu;
+	}
 }
